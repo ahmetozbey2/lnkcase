@@ -24,7 +24,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={` ${geistMono.className} flex items-start antialiased`}>
         <Sidebar />
-        <div className="w-4/5">{children}</div>
+        <div className="ml-[20%] w-4/5">{children}</div>
       </body>
     </html>
   );

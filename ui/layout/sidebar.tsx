@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import * as React from 'react';
 import { RiChatNewLine } from 'react-icons/ri';
 
@@ -5,11 +6,13 @@ export interface IAppProps {}
 
 export default function Sidebar(props: IAppProps) {
   return (
-    <div className="flex h-screen w-1/5 flex-col justify-between border-r-2 border-solid border-r-gray-200 bg-[#FAFAFA] p-5">
+    <div className="fixed left-0 top-0 flex h-screen w-1/5 flex-col justify-between border-r-2 border-solid border-r-gray-200 bg-[#FAFAFA] p-5">
       <div>
-        <div className="mb-4 px-2">
-          <h3 className="text-3xl font-bold">G-LNK</h3>
-        </div>
+        <Link href="/">
+          <div className="mb-4 px-2">
+            <h3 className="text-3xl font-bold">G-LNK</h3>
+          </div>
+        </Link>
         <div className="flex cursor-pointer items-center gap-x-2 rounded-[5px] px-2 py-1 duration-300 hover:bg-gray-200">
           <RiChatNewLine className="text-purple-700" />
           <p className="text-purple-700">Start New Chat</p>
