@@ -8,6 +8,11 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "engines": {
+    "node": ">=14.0.0",
+    "yarn": ">=1.22.0",
+    "npm": "please-use-yarn"
+  },
   "dependencies": {
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
