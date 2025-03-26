@@ -14,7 +14,6 @@ export default function Sidebar() {
     ...messages[0], // sadece ilk mesajı al
   }));
 
-  console.log("flattened", firstMessages);
   const [isClient, setIsClient] = React.useState(false);
 
   React.useEffect(() => {
