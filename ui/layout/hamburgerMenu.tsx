@@ -13,7 +13,7 @@ import {
 } from '@/components/ui/sheet';
 import { useChatOperations } from '@/store/useChatStore';
 
-export function SheetDemo() {
+export function HambuergerMenu() {
   const { getAllThreads } = useChatOperations();
   const threads = getAllThreads();
   const firstMessages = Object.entries(threads).map(([id, messages]) => ({
@@ -25,8 +25,8 @@ export function SheetDemo() {
       <SheetTrigger asChild>
         <HiOutlineMenuAlt2 className="text-2xl lg:hidden" />
       </SheetTrigger>
-      <SheetContent className="border-none bg-white pb-40">
-        <div className=" flex h-screen w-full flex-col border-r-2 border-solid border-r-gray-200 bg-[#FAFAFA] p-5 max-lg:gap-y-10 lg:justify-between">
+      <SheetContent className="border-none bg-white pb-40 dark:bg-[#0d0d0d]">
+        <div className=" flex h-screen w-full flex-col border-r-2 border-solid border-r-gray-200 bg-[#FAFAFA] p-5 dark:bg-[#0d0d0d] max-lg:gap-y-10 lg:justify-between">
           <div>
             <Link
               href="/"

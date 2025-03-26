@@ -3,8 +3,10 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Syne } from 'next/font/google';
 
-import { SheetDemo } from '@/ui/layout/hamburgerMenu';
+import { HambuergerMenu } from '@/ui/layout/hamburgerMenu';
 import Sidebar from '@/ui/layout/sidebar';
+import { ThemeProvider } from '@/ui/layout/themeProvider';
+import { ModeToggle } from '@/ui/layout/themeSwitcher';
 
 const geistMono = Syne({
   subsets: ['latin'],
@@ -22,16 +24,32 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={` ${geistMono.className} flex items-start antialiased max-lg:flex-col`}
+        className={` ${geistMono.className} flex items-start antialiased dark:bg-[#0d0d0d] max-lg:flex-col`}
       >
-        <Sidebar />
-        <div className="mx-auto flex w-[92%] justify-between pt-8 lg:hidden">
-          <h3 className="text-3xl font-bold">G-LNK</h3>
-          <SheetDemo />
-        </div>
-        <div className="w-full lg:ml-[20%] lg:w-4/5">{children}</div>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Sidebar />
+          <div className="mx-auto flex w-[92%] justify-between pt-8 lg:hidden ">
+            <h3 className="text-3xl font-bold">G-LNK</h3>
+            <div className="flex items-center space-x-2">
+              <ModeToggle />
+              <HambuergerMenu />
+            </div>
+          </div>
+
+          <div className="flex w-full flex-col lg:ml-[20%] lg:w-4/5">
+            <div className="absolute right-4 top-4 max-lg:hidden">
+              <ModeToggle />
+            </div>
+            {children}
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );

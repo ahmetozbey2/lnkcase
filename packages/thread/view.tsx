@@ -36,7 +36,7 @@ export default function ThreadPageView() {
     }, [index, text, speed]);
 
     return (
-      <div className="whitespace-pre-wrap rounded-lg text-base text-black">
+      <div className="whitespace-pre-wrap rounded-lg text-base text-black dark:text-white">
         {text.slice(0, index)}
       </div>
     );
@@ -46,7 +46,7 @@ export default function ThreadPageView() {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [currentThread]);
   return (
-    <div className="flex h-screen flex-col items-center justify-between pt-8 lg:pt-20">
+    <div className="flex min-h-screen flex-col items-center justify-between pt-8 dark:bg-[#0d0d0d] lg:pt-20">
       <div className=" mb-12 flex w-[92%] flex-col gap-y-5 pb-80 lg:w-3/4">
         {currentThread.map((message, index) => {
           const isLastAnswer = index == lastIndex;
@@ -85,7 +85,7 @@ export default function ThreadPageView() {
         )}
       </div>
       <PromptCard
-        className="fixed bottom-0 !rounded-b-none bg-white"
+        className="fixed bottom-0 !rounded-b-none bg-white dark:bg-[#0d0d0d]"
         initialThreadId={params.url}
       />
     </div>

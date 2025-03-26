@@ -85,7 +85,7 @@ const PromptCard: FC<PromptCardProps> = ({
         <SiPolestar size={25} />
         <textarea
           placeholder="Ask AI a question.."
-          className="mb-2 flex h-32 w-full resize-none items-start justify-start focus:outline-none"
+          className="mb-2 flex h-32 w-full resize-none items-start justify-start focus:outline-none dark:bg-[#0d0d0d]"
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
         />
@@ -95,12 +95,12 @@ const PromptCard: FC<PromptCardProps> = ({
         {/* Left Side Buttons */}
         <div className="flex items-center gap-x-1 lg:gap-x-3">
           {/* Attach Button */}
-          <div className="flex w-fit items-center space-x-1 rounded-[5px] border border-solid border-gray-300 px-2 py-1 duration-300 hover:bg-gray-200 lg:space-x-2 lg:px-4">
+          <div className="flex w-fit items-center space-x-1 rounded-[5px] border border-solid border-gray-300 px-2 py-1 duration-300 hover:bg-gray-200 dark:hover:bg-black lg:space-x-2 lg:px-4">
             <MdOutlineAttachFile />
             <button>Attach</button>
           </div>
           {/* Deep Research Button */}
-          <div className="flex w-fit items-center space-x-2 rounded-[5px] border border-solid border-gray-300 px-4 py-1 duration-300 hover:bg-gray-200">
+          <div className="flex w-fit items-center space-x-2 rounded-[5px] border border-solid border-gray-300 px-4 py-1 duration-300 hover:bg-gray-200 dark:hover:bg-black">
             <IoTelescopeOutline />
             <button>Deep Research</button>
           </div>
@@ -120,9 +120,9 @@ const PromptCard: FC<PromptCardProps> = ({
           {/* Submit Button */}
           <div
             onClick={handleSubmitPrompt}
-            className={`${prompt.length > 0 ? 'bg-black hover:bg-purple-700' : 'cursor-not-allowed bg-gray-300'}  flex w-fit cursor-pointer items-center space-x-2 rounded-[5px] border border-solid border-gray-300 p-2 duration-300 `}
+            className={`${prompt.length > 0 ? 'bg-black hover:bg-purple-700' : 'cursor-not-allowed bg-gray-300'}  flex w-fit cursor-pointer items-center space-x-2 rounded-[5px] border border-solid border-gray-300 p-2 duration-300 dark:bg-white`}
           >
-            <FaArrowUp fill="white" />
+            <FaArrowUp className="fill-white dark:fill-black" />
           </div>
         </div>
       </div>
