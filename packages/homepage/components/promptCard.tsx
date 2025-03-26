@@ -77,7 +77,7 @@ const PromptCard: FC<PromptCardProps> = ({
     <div
       className={cn(
         className,
-        "flex w-full lg:w-3/5 flex-col justify-between rounded-xl border border-solid p-5 shadow-xl",
+        "flex w-full lg:w-3/5 flex-col justify-between rounded-xl border border-solid px-3 py-4 lg:p-5 shadow-xl",
       )}
     >
       {/* Input Row */}
@@ -91,22 +91,22 @@ const PromptCard: FC<PromptCardProps> = ({
         />
       </div>
       {/* Action Buttons */}
-      <div className="flex w-full items-center justify-between">
+      <div className="flex w-full items-center max-lg:gap-x-1 lg:justify-between">
         {/* Left Side Buttons */}
         <div className="flex items-center gap-x-1 lg:gap-x-3">
           {/* Attach Button */}
-          <div className="flex w-fit items-center space-x-1 rounded-[5px] border border-solid border-gray-300 px-2 py-1 duration-300 hover:bg-gray-200 dark:hover:bg-black lg:space-x-2 lg:px-4">
+          <div className="flex w-fit items-center space-x-1 rounded-[5px] border border-solid border-gray-300 px-1 py-1 duration-300 hover:bg-gray-200 dark:hover:bg-black lg:space-x-2 lg:px-4">
             <MdOutlineAttachFile />
             <button>Attach</button>
           </div>
           {/* Deep Research Button */}
           <div className="flex w-fit items-center space-x-2 rounded-[5px] border border-solid border-gray-300 px-4 py-1 duration-300 hover:bg-gray-200 dark:hover:bg-black">
             <IoTelescopeOutline />
-            <button>Deep Research</button>
+            <button className="text-nowrap">Deep Research</button>
           </div>
         </div>
         {/* Right Side Buttons */}
-        <div className="flex items-center gap-x-3">
+        <div className="flex items-center gap-x-1 lg:gap-x-3">
           {/* Improve Prompt Button with hover effect */}
           <div
             onClick={improvePrompt}
