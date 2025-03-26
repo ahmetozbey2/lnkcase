@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
-import { useParams, usePathname, useRouter } from 'next/navigation';
-import type { FC } from 'react';
-import { useState } from 'react';
-import { FaArrowUp, FaMagic } from 'react-icons/fa';
-import { IoTelescopeOutline } from 'react-icons/io5';
-import { MdOutlineAttachFile } from 'react-icons/md';
-import { SiPolestar } from 'react-icons/si';
+import { useParams, usePathname, useRouter } from "next/navigation";
+import type { FC } from "react";
+import { useState } from "react";
+import { FaArrowUp, FaMagic } from "react-icons/fa";
+import { IoTelescopeOutline } from "react-icons/io5";
+import { MdOutlineAttachFile } from "react-icons/md";
+import { SiPolestar } from "react-icons/si";
 
-import mockAnswer from '@/helpers/answers.mock.json';
-import { cn } from '@/lib/utils';
-import { useChatOperations } from '@/store/useChatStore';
+import mockAnswer from "@/helpers/answers.mock.json";
+import { cn } from "@/lib/utils";
+import { useChatOperations } from "@/store/useChatStore";
 
 interface PromptCardProps {
   className?: string;
@@ -28,14 +28,14 @@ const PromptCard: FC<PromptCardProps> = ({
   const params = useParams();
   const { createThread, addMessageToThread } = useChatOperations();
 
-  const [prompt, setPrompt] = useState<string>('');
+  const [prompt, setPrompt] = useState<string>("");
   const [currentThreadId, setCurrentThreadId] = useState<string | null>(
     initialThreadId ||
-      (pathname.includes('/thread/') ? (params.url as string) : null),
+      (pathname.includes("/thread/") ? (params.url as string) : null),
   );
 
   const handleSubmitPrompt = () => {
-    if (prompt.trim() === '') return;
+    if (prompt.trim() === "") return;
 
     let threadId: string;
 
@@ -48,7 +48,7 @@ const PromptCard: FC<PromptCardProps> = ({
       threadId = currentThreadId;
       window.scrollTo({
         top: document.body.scrollHeight,
-        behavior: 'smooth',
+        behavior: "smooth",
       });
       addMessageToThread(
         threadId,
@@ -61,14 +61,14 @@ const PromptCard: FC<PromptCardProps> = ({
       onSubmit(threadId, prompt);
     }
 
-    setPrompt('');
+    setPrompt("");
   };
 
   const improvePrompt = () => {
     const improvedPrompt = prompt
-      .split(' ')
+      .split(" ")
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(' ');
+      .join(" ");
 
     setPrompt(improvedPrompt);
   };
@@ -77,7 +77,7 @@ const PromptCard: FC<PromptCardProps> = ({
     <div
       className={cn(
         className,
-        'flex w-full lg:w-3/5 flex-col justify-between rounded-xl border border-solid p-5 shadow-xl',
+        "flex w-full lg:w-3/5 flex-col justify-between rounded-xl border border-solid p-5 shadow-xl",
       )}
     >
       {/* Input Row */}
@@ -120,9 +120,9 @@ const PromptCard: FC<PromptCardProps> = ({
           {/* Submit Button */}
           <div
             onClick={handleSubmitPrompt}
-            className={`${prompt.length > 0 ? 'bg-black hover:bg-purple-700' : 'cursor-not-allowed bg-gray-300'}  flex w-fit cursor-pointer items-center space-x-2 rounded-[5px] border border-solid border-gray-300 p-2 duration-300 dark:bg-white`}
+            className={`${prompt.length > 0 ? "bg-black hover:bg-purple-700" : "cursor-not-allowed bg-gray-300"}  flex w-fit cursor-pointer items-center space-x-2 rounded-[5px] border border-solid border-gray-300 p-2 duration-300 dark:bg-white`}
           >
-            <FaArrowUp className="fill-white dark:fill-black" />
+            <FaArrowUp className="fill-white dark:fill-black " />
           </div>
         </div>
       </div>
