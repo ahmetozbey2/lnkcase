@@ -31,7 +31,7 @@ export default function RootLayout({
           <h3 className="text-3xl font-bold">G-LNK</h3>
           <SheetDemo />
         </div>
-        <div className="lg:ml-[20%] lg:w-4/5">{children}</div>
+        <div className="w-full lg:ml-[20%] lg:w-4/5">{children}</div>
       </body>
     </html>
   );

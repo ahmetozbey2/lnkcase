@@ -23,7 +23,7 @@ export default function Sidebar() {
   }, []);
 
   return (
-    <div className="fixed  left-0 top-0 flex h-screen w-1/5 flex-col justify-between border-r-2 border-solid border-r-gray-200 bg-[#FAFAFA] p-5 max-lg:hidden">
+    <div className="fixed left-0 top-0 h-screen w-1/5 flex-col justify-between border-r-2 border-solid border-r-gray-200 bg-[#FAFAFA] p-5 max-lg:hidden lg:flex">
       <div>
         <Link href="/">
           <div className="mb-4 px-2">

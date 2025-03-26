@@ -93,9 +93,9 @@ const PromptCard: FC<PromptCardProps> = ({
       {/* Action Buttons */}
       <div className="flex w-full items-center justify-between">
         {/* Left Side Buttons */}
-        <div className="flex items-center gap-x-3">
+        <div className="flex items-center gap-x-1 lg:gap-x-3">
           {/* Attach Button */}
-          <div className="flex w-fit items-center space-x-2 rounded-[5px] border border-solid border-gray-300 px-4 py-1 duration-300 hover:bg-gray-200">
+          <div className="flex w-fit items-center space-x-1 rounded-[5px] border border-solid border-gray-300 px-2 py-1 duration-300 hover:bg-gray-200 lg:space-x-2 lg:px-4">
             <MdOutlineAttachFile />
             <button>Attach</button>
           </div>
