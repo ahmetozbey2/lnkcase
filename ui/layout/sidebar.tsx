@@ -1,10 +1,22 @@
+'use client';
+
 import Link from 'next/link';
 import * as React from 'react';
 import { RiChatNewLine } from 'react-icons/ri';
 
-export interface IAppProps {}
+import { useChatOperations } from '@/store/useChatStore';
 
-export default function Sidebar(props: IAppProps) {
+export default function Sidebar() {
+  const { createThread, addMessageToThread, getAllThreads } =
+    useChatOperations();
+  const threads = getAllThreads();
+  console.log('threads', threads);
+  const firstMessages = Object.entries(threads).map(([id, messages]) => ({
+    id,
+    ...messages[0], // sadece ilk mesajı al
+  }));
+
+  console.log('flattened', firstMessages);
   return (
     <div className="fixed left-0 top-0 flex h-screen w-1/5 flex-col justify-between border-r-2 border-solid border-r-gray-200 bg-[#FAFAFA] p-5">
       <div>
@@ -24,19 +36,27 @@ export default function Sidebar(props: IAppProps) {
         <div className="mb-3 mt-10">
           <p className="pl-2 text-sm text-gray-600">Recents</p>
         </div>
-        <div className=" flex flex-col gap-y-2">
-          <p className="cursor-pointer rounded-[5px] px-2 py-1 text-sm duration-300 hover:bg-gray-200">
-            Collaborate with Claude using...
-          </p>
-          <p className="cursor-pointer rounded-[5px] px-2 py-1 text-sm duration-300 hover:bg-gray-200">
-            Collaborate with Claude using...
-          </p>
-          <p className="cursor-pointer rounded-[5px] px-2 py-1 text-sm duration-300 hover:bg-gray-200">
-            Collaborate with Claude using...
-          </p>
-          <p className="cursor-pointer rounded-[5px] px-2 py-1 text-sm duration-300 hover:bg-gray-200">
-            Collaborate with Claude using...
-          </p>
+        <div className=" flex max-h-[450px] flex-col gap-y-2 overflow-y-auto">
+          {firstMessages.map((firstMessage) => {
+            return (
+              <Link
+                href={`/thread/${firstMessage.id}`}
+                className="cursor-pointer rounded-[5px] px-2 py-1 text-sm duration-300 hover:bg-gray-200"
+              >
+                {firstMessage.question}
+              </Link>
+            );
+          })}
+          {firstMessages.map((firstMessage) => {
+            return (
+              <Link
+                href={`/thread/${firstMessage.id}`}
+                className="cursor-pointer rounded-[5px] px-2 py-1 text-sm duration-300 hover:bg-gray-200"
+              >
+                {firstMessage.question}
+              </Link>
+            );
+          })}
         </div>
       </div>
 
