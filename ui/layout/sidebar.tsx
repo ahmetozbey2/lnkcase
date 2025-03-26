@@ -1,21 +1,20 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import * as React from 'react';
-import { RiChatNewLine } from 'react-icons/ri';
+import Link from "next/link";
+import * as React from "react";
+import { RiChatNewLine } from "react-icons/ri";
 
-import { useChatOperations } from '@/store/useChatStore';
+import { useChatOperations } from "@/store/useChatStore";
 
 export default function Sidebar() {
   const { getAllThreads } = useChatOperations();
   const threads = getAllThreads();
-  console.log('threads', threads);
   const firstMessages = Object.entries(threads).map(([id, messages]) => ({
     id,
     ...messages[0], // sadece ilk mesajı al
   }));
 
-  console.log('flattened', firstMessages);
+  console.log("flattened", firstMessages);
   const [isClient, setIsClient] = React.useState(false);
 
   React.useEffect(() => {
