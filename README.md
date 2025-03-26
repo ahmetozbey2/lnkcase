@@ -1,36 +1,121 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This is a [Next.js](https://nextjs.org/) project bootstrapped with
+[`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
 First, run the development server:
 
 ```bash
-npm run dev
-# or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Run build:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+yarn build
+```
+## Commit Standart
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+`commitlint` was used to enforce a certain standard for commits. Commits that do not follow the format
+`[commit type: commit message]` will be flagged by commit lint. The possible commit types are as follows:
 
-## Learn More
+- build: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
+- ci: Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)
+- docs: Documentation only changes
+- feat: A new feature
+- fix: A bug fix
+- perf: A code change that improves performance
+- refactor: A code change that neither fixes a bug nor adds a feature
+- style: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+- test: Adding missing tests or correcting existing tests
 
-To learn more about Next.js, take a look at the following resources:
+## Project File Structure and Functions
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The fundamental file structure and component types used in this project are as follows:
+```bash
+.
+├── ...
+├── packages
+| ├── components
+|   ├── Button
+|     ├── index.tsx
+|     ├── button.test.tsx
+|     ├── button.stories.tsx
+| ├── views
+|   ├── Homepage
+|     ├── index.tsx
+| ├── pages
+|   ├── index.tsx
+| ├── helpers
+| ├── layout
+└── ...
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### `components`
 
-## Deploy on Vercel
+This folder contains the core components of the project. Each component serves as a location where its structure is created, tests are written, and prototyping is done using Storybook.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+#### Example: `Button`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `index.tsx`: The fundamental implementation of the Button component.
+
+### `views`
+
+This folder is where components that create page views are combined, and the overall style of the page is designed.
+
+#### Example: `Homepage`
+
+- `index.tsx`: The main application file for the Homepage component.
+
+### `pages`
+
+This folder contains the main component that renders the entire page using components from the `views` folder.
+
+#### Example: `index.tsx`
+
+- `index.tsx`: The main file that renders the page.
+
+This structure organizes the project files in a logical manner and describes the function of each component. This file structure makes the project more understandable and well-organized for development and maintenance purposes.
+
+
+## State Management: Zustand
+
+This project uses [Zustand](https://github.com/pmndrs/zustand) as the state management library for managing global state in a simple and scalable way.
+
+### Key Features:
+
+- Minimal and unopinionated API
+- React-friendly with built-in hooks
+- Easy to integrate and scale
+
+Zustand stores are defined inside the `stores` folder and can be used throughout the app via custom hooks.
+
+### Example usage:
+
+```tsx
+const useStore = create((set) => ({
+  count: 0,
+  increment: () => set((state) => ({ count: state.count + 1 })),
+}));
+```
+
+## Data Fetching: React Query
+
+[React Query](https://tanstack.com/query/latest) is used for managing server-state and handling asynchronous data fetching, caching, synchronization, and more.
+
+### Key Features:
+
+- Caching and background updates
+- Query invalidation
+- Pagination and lazy loading support
+- Devtools for debugging
+
+React Query is integrated using the `QueryClientProvider` at the root of the app. Queries are used with the `useQuery` hook.
+
+### Example usage:
+
+```tsx
+const { data, isLoading, error } = useQuery(['todos'], fetchTodos);
+```
+
+React Query improves the performance and UX of the app by managing network state efficiently.
