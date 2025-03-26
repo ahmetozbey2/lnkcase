@@ -5,17 +5,18 @@ import * as React from "react";
 import { RiChatNewLine } from "react-icons/ri";
 
 import { useChatOperations } from "@/store/useChatStore";
+import { usePathname } from "next/navigation";
 
 export default function Sidebar() {
   const { getAllThreads } = useChatOperations();
   const threads = getAllThreads();
   const firstMessages = Object.entries(threads).map(([id, messages]) => ({
     id,
-    ...messages[0], // sadece ilk mesajı al
+    ...messages[0],
   }));
 
   const [isClient, setIsClient] = React.useState(false);
-
+  const pathname = usePathname();
   React.useEffect(() => {
     setIsClient(true);
   }, []);
