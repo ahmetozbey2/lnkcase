@@ -1,11 +1,13 @@
 import './globals.css';
 
 import type { Metadata } from 'next';
-import { Roboto_Mono } from 'next/font/google';
+import { Syne } from 'next/font/google';
 
-const geistMono = Roboto_Mono({
-  variable: '--font-geist-mono',
+import Sidebar from '@/ui/layout/sidebar';
+
+const geistMono = Syne({
   subsets: ['latin'],
+  weight: ['400', '700'],
 });
 
 export const metadata: Metadata = {
@@ -20,7 +22,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={` ${geistMono.variable} antialiased`}>{children}</body>
+      <body className={` ${geistMono.className} flex items-start antialiased`}>
+        <Sidebar />
+        <div className="w-4/5">{children}</div>
+      </body>
     </html>
   );
 }
