@@ -41,10 +41,13 @@ export default function ThreadPageView() {
       </div>
     );
   };
-
+  const bottomRef = React.useRef<HTMLDivElement | null>(null);
+  React.useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [currentThread]);
   return (
-    <div className="flex h-screen flex-col items-center justify-between pt-20">
-      <div className="mb-12 flex w-3/4 flex-col gap-y-5 pb-80">
+    <div className="flex h-screen flex-col items-center justify-between pt-8 lg:pt-20">
+      <div className=" mb-12 flex w-[92%] flex-col gap-y-5 pb-80 lg:w-3/4">
         {currentThread.map((message, index) => {
           const isLastAnswer = index == lastIndex;
 
@@ -73,6 +76,7 @@ export default function ThreadPageView() {
             </React.Fragment>
           );
         })}
+        <div ref={bottomRef} />
 
         {currentThread.length === 0 && (
           <div className="py-10 text-center text-gray-500">

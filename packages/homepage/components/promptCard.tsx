@@ -46,7 +46,10 @@ const PromptCard: FC<PromptCardProps> = ({
       router.push(`/thread/${threadId}`);
     } else {
       threadId = currentThreadId;
-
+      window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: 'smooth',
+      });
       addMessageToThread(
         threadId,
         prompt,
@@ -74,7 +77,7 @@ const PromptCard: FC<PromptCardProps> = ({
     <div
       className={cn(
         className,
-        'flex w-3/5 flex-col justify-between rounded-xl border border-solid p-5 shadow-xl',
+        'flex w-full lg:w-3/5 flex-col justify-between rounded-xl border border-solid p-5 shadow-xl',
       )}
     >
       {/* Input Row */}
@@ -107,17 +110,17 @@ const PromptCard: FC<PromptCardProps> = ({
           {/* Improve Prompt Button with hover effect */}
           <div
             onClick={improvePrompt}
-            className="group flex w-fit cursor-pointer items-center rounded-[5px] border border-gray-300 px-3 py-1 transition-all duration-300 hover:border-transparent hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500"
+            className="group flex w-fit cursor-pointer items-center rounded-[5px] border border-gray-300 px-3 py-1 transition-all duration-300 hover:border-transparent hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 max-lg:h-8"
           >
             <FaMagic className="group-hover:fill-white" />
-            <span className="max-w-0 overflow-hidden whitespace-nowrap text-white opacity-0 transition-all duration-300 group-hover:ml-2 group-hover:max-w-xs group-hover:opacity-100">
+            <span className="max-w-0 overflow-hidden whitespace-nowrap text-white opacity-0 transition-all duration-300 group-hover:ml-2 group-hover:max-w-xs group-hover:opacity-100 max-lg:hidden">
               Improve Prompt
             </span>
           </div>
           {/* Submit Button */}
           <div
             onClick={handleSubmitPrompt}
-            className={`${prompt.length > 0 ? 'bg-black hover:bg-purple-700' : 'cursor-not-allowed bg-gray-300'}  flex w-fit cursor-pointer items-center space-x-2 rounded-[5px] border border-solid border-gray-300 p-2 duration-300`}
+            className={`${prompt.length > 0 ? 'bg-black hover:bg-purple-700' : 'cursor-not-allowed bg-gray-300'}  flex w-fit cursor-pointer items-center space-x-2 rounded-[5px] border border-solid border-gray-300 p-2 duration-300 `}
           >
             <FaArrowUp fill="white" />
           </div>
