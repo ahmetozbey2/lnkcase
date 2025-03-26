@@ -9,23 +9,21 @@
     "source.addMissingImports",
     "source.fixAll.eslint"
   ],
-  "typescript.tsdk": "node_modules/typescript/lib", // Use the workspace version of TypeScript
-  "typescript.enablePromptUseWorkspaceTsdk": true, // For security reasons it's require that users opt into using the workspace version of typescript
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
   "typescript.preferences.autoImportFileExcludePatterns": [
-    // useRouter should be imported from `next/navigation` instead of `next/router`
     "next/router.d.ts",
     "next/dist/client/router.d.ts",
-    // give priority for Link to next/link instead of lucide-react
     "lucide-react"
   ],
-  "typescript.preferences.preferTypeOnlyAutoImports": true, // Prefer type-only imports
-  "testing.openTesting": "neverOpen", // Don't open the testing view automatically when running tests
-  // Multiple language settings for json and jsonc files
+  "typescript.preferences.preferTypeOnlyAutoImports": true,
+  "testing.openTesting": "neverOpen",
+
   "[json][jsonc][yaml]": {
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "prettier.ignorePath": ".gitignore", // Don't run prettier for files listed in .gitignore
+  "prettier.ignorePath": ".gitignore",
   "i18n-ally.localesPaths": ["src/locales"],
   "i18n-ally.keystyle": "nested"
 }
