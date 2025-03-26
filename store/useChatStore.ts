@@ -6,8 +6,8 @@ import mockAnsers from '../helpers/answers.mock.json';
 
 // Interface defining the structure of a single message
 export interface Message {
-  question: string;  // The user's input message
-  answer: string;    // The response to the message
+  question: string; // The user's input message
+  answer: string; // The response to the message
   timestamp?: number; // Optional timestamp for the message
 }
 
@@ -17,20 +17,20 @@ const sleep = (ms: number) => new Promise((res) => setTimeout(res, ms));
 // Interface defining the entire chat store state and its methods
 interface ChatState {
   threads: {
-    [threadId: string]: Message[];  // Object storing messages for each thread
+    [threadId: string]: Message[]; // Object storing messages for each thread
   };
-  isLoading: boolean;  // Indicates if the chat is currently processing
-  
+  isLoading: boolean; // Indicates if the chat is currently processing
+
   // Methods to manipulate the chat store
-  setLoading: (value: boolean) => void;  // Set loading state
-  createThread: (initialMessage: string) => string;  // Create a new chat thread
+  setLoading: (value: boolean) => void; // Set loading state
+  createThread: (initialMessage: string) => string; // Create a new chat thread
   addMessageToThread: (
     threadId: string,
     question: string,
     answer: string,
-  ) => Promise<void>;  // Add a new message to an existing thread
-  getAllThreads: () => { [threadId: string]: Message[] };  // Retrieve all threads
-  getThread: (threadId: string) => Message[] | undefined;  // Get a specific thread
+  ) => Promise<void>; // Add a new message to an existing thread
+  getAllThreads: () => { [threadId: string]: Message[] }; // Retrieve all threads
+  getThread: (threadId: string) => Message[] | undefined; // Get a specific thread
 }
 
 // Create the chat store using Zustand with persistence

@@ -17,6 +17,12 @@ export default function Sidebar() {
   }));
 
   console.log('flattened', firstMessages);
+  const [isClient, setIsClient] = React.useState(false);
+
+  React.useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   return (
     <div className="fixed left-0 top-0 flex h-screen w-1/5 flex-col justify-between border-r-2 border-solid border-r-gray-200 bg-[#FAFAFA] p-5">
       <div>
@@ -37,26 +43,20 @@ export default function Sidebar() {
           <p className="pl-2 text-sm text-gray-600">Recents</p>
         </div>
         <div className=" flex max-h-[450px] flex-col gap-y-2 overflow-y-auto">
-          {firstMessages.map((firstMessage) => {
-            return (
-              <Link
-                href={`/thread/${firstMessage.id}`}
-                className="cursor-pointer rounded-[5px] px-2 py-1 text-sm duration-300 hover:bg-gray-200"
-              >
-                {firstMessage.question}
-              </Link>
-            );
-          })}
-          {firstMessages.map((firstMessage) => {
-            return (
-              <Link
-                href={`/thread/${firstMessage.id}`}
-                className="cursor-pointer rounded-[5px] px-2 py-1 text-sm duration-300 hover:bg-gray-200"
-              >
-                {firstMessage.question}
-              </Link>
-            );
-          })}
+          {isClient &&
+            firstMessages.reverse().map((firstMessage, index) => {
+              return (
+                <Link
+                  key={index}
+                  href={`/thread/${firstMessage.id}`}
+                  className="cursor-pointer rounded-[5px] px-2 py-1 text-sm duration-300 hover:bg-gray-200"
+                >
+                  {firstMessage.question.length > 30
+                    ? `${firstMessage.question.slice(0, 30)}...`
+                    : firstMessage.question}
+                </Link>
+              );
+            })}
         </div>
       </div>
 
